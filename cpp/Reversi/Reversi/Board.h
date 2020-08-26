@@ -21,13 +21,36 @@ private:
 		G,E,E,E,E,E,E,E,E,G,
 		G,G,G,G,G,G,G,G,G,G
 	};
-	inline int index(int x, int y) {
+	inline static int index(int x, int y) {
 		return y * RAW_SIZE + x;
 	}
-public:
-	Board() {
 
+
+
+	static void directionInit()
+	{
+		int upper = index(0, -1);
+		int left = index(-1, 0);
+		int right = index(1, 0);
+		int lower = index(0, 1);
+
+		directions = new int[] {
+			upper,
+			upper + left,
+			left,
+			lower + left,
+			lower,
+			lower + right,
+			right,
+			upper + right
+		};
 	}
+public:
+	static int* directions;
+	static void Initialize() {
+		directionInit();
+	}
+
 	Color Cell(int x, int y) {
 		return RawBoard[index(x, y)];
 	}

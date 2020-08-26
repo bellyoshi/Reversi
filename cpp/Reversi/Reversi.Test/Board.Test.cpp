@@ -33,5 +33,17 @@ namespace ReversiTest
 			Assert::AreEqual(WHITE, b.Cell(5, 5));
 
 		}
+		TEST_METHOD(Directions) {
+			Board b;
+			Assert::AreEqual(-10, Board::directions[0]);
+			Assert::AreEqual(-11, Board::directions[1]);
+			Assert::AreEqual(-1, Board::directions[2]);
+			Assert::AreEqual(9, Board::directions[3]);
+			Assert::AreEqual(10, Board::directions[4]);
+			Assert::AreEqual(11, Board::directions[5]);
+			Assert::AreEqual(1, Board::directions[6]);
+			Assert::AreEqual(-9, Board::directions[7]);
+
+		}
 	};
 }
