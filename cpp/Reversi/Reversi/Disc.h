@@ -4,7 +4,12 @@ typedef int Color;
 const Color EMPTY = 0;
 const Color WHITE = -1;
 const Color BLACK = 1;
-const Color WALL = 2;
+const Color GUARD = 2;
+
+const Color E = EMPTY;
+const Color B = BLACK;
+const Color W = WHITE;
+const Color G = GUARD;
 
 struct Disc : public Point
 {

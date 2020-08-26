@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\bellyoshi\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\bellm\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bellyoshi\\source\\repos\\Reversi\\cs\\Reversi\\Reversi\\Reversi.csproj",
+      "projectUniqueName": "C:\\Users\\bellm\\source\\repos\\Reversi\\cs\\Reversi\\Reversi\\Reversi.csproj",
       "projectName": "Reversi",
-      "projectPath": "C:\\Users\\bellyoshi\\source\\repos\\Reversi\\cs\\Reversi\\Reversi\\Reversi.csproj",
-      "packagesPath": "C:\\Users\\bellyoshi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bellyoshi\\source\\repos\\Reversi\\cs\\Reversi\\Reversi\\obj\\",
+      "projectPath": "C:\\Users\\bellm\\source\\repos\\Reversi\\cs\\Reversi\\Reversi\\Reversi.csproj",
+      "packagesPath": "C:\\Users\\bellm\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bellm\\source\\repos\\Reversi\\cs\\Reversi\\Reversi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\bellyoshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bellm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -57,12 +53,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.0.1, 3.0.1]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.0.3, 3.0.3]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.0.0, 3.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
