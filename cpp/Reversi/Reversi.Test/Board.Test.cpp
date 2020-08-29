@@ -32,6 +32,8 @@ namespace ReversiTest
 			Assert::AreEqual(WHITE, b.Cell(4, 4));
 			Assert::AreEqual(WHITE, b.Cell(5, 5));
 
+			Assert::AreEqual(BLACK, b.CurrentColor());
+
 		}
 		TEST_METHOD(Directions) {
 			Board b;
@@ -44,6 +46,33 @@ namespace ReversiTest
 			Assert::AreEqual(1, Board::directions[6]);
 			Assert::AreEqual(-9, Board::directions[7]);
 
+		}
+		TEST_METHOD(Move) {
+			Board b;
+			Assert::AreEqual(true, b.Move(Point(1, 1)));
+			Assert::AreEqual(true, b.Move(Point(8, 8)));
+			Assert::AreEqual(false, b.Move(Point(0, 1)));
+			Assert::AreEqual(false, b.Move(Point(1, 0)));
+			Assert::AreEqual(false, b.Move(Point(9, 5)));
+			Assert::AreEqual(false, b.Move(Point(5, 9)));
+		}
+		TEST_METHOD(CheckMobirity) {
+			Board b;
+			Assert::AreEqual(0B000000001, b.CheckMobirity(Disc(5, 6,BLACK)));
+			Assert::AreEqual(0B000010000, b.CheckMobirity(Disc(4, 3, BLACK)));
+			Assert::AreEqual(0B001000000, b.CheckMobirity(Disc(3, 4, BLACK)));
+			Assert::AreEqual(0B000000100, b.CheckMobirity(Disc(6, 5, BLACK)));
+			for (int x = 1; x <= 8; x++) {
+				for (int y = 1; y <= 8; y++) {
+					if (x == 5 && y == 6)continue;
+					if (x == 4 && y == 3)continue;
+					if (x == 3 && y == 4)continue;
+					if (x == 6 && y == 5)continue;
+					Assert::AreEqual(0B0000000, b.CheckMobirity(Disc(x, y, BLACK)));
+				}
+			}
+
+			
 		}
 	};
 }
