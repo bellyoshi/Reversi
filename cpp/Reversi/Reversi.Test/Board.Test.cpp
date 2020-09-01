@@ -71,8 +71,13 @@ namespace ReversiTest
 					Assert::AreEqual(0B0000000, b.CheckMobirity(Disc(x, y, BLACK)));
 				}
 			}
-
-			
+		}
+		TEST_METHOD(MoveDiscs) {
+			Board b;
+			b.Move(Point(5, 6));
+			Assert::AreEqual(4, b.DiscCount(BLACK));
+			Assert::AreEqual(1, b.DiscCount(WHITE));
+		
 		}
 	};
 }

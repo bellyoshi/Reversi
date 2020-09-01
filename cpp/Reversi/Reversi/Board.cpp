@@ -33,3 +33,47 @@ int Board::CheckMobirity(Disc disc)
 	}
 	return allMobirity;
 }
+void Board::initMovable() {
+	Disc disc(1, 1, currentColor);
+	movablePos[turns].clear();
+	for (int x = 1; x <= SIZE; x++) {
+		disc.x = x;
+		for (int y = 1; y <= SIZE; y++) {
+			disc.y = y;
+			int dir = CheckMobirity(disc);
+			if (dir != 0) {
+				movablePos[turns].push_back(disc);
+			}
+			movableDir[turns][x - 1][y - 1] = dir;
+		}
+	}
+}
+
+void Board::flipDiscs(const Point& point)
+{
+	Disc ope_disc(point.x, point.y, currentColor);
+	int dir = movableDir[turns][point.x-1][point.y-1];
+	int putdisc_p = index(point.x, point.y);
+	std::vector<Disc> update;
+	RawBoard[putdisc_p] = currentColor;
+	update.push_back(ope_disc);
+	for (int mobirity = 1,i = 0; i < 8; mobirity <<= 1, ++i) {
+		if (dir & mobirity) {
+			int p = putdisc_p + directions[i];
+			while (RawBoard[p] == -currentColor) {
+				RawBoard[p] = currentColor;
+				ope_disc.x = p % RAW_SIZE;
+				ope_disc.y = p / RAW_SIZE;
+				update.push_back(ope_disc);
+
+			}
+		}
+		
+	}
+	int discdiff = update.size();
+	discs[currentColor] += discdiff;
+	discs[-currentColor] -= discdiff - 1;
+	discs[EMPTY]--;
+	updateLog.push_back(update);
+
+}

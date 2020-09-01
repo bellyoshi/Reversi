@@ -1,6 +1,7 @@
 #pragma once
 #include "Disc.h"
 #include <vector>
+#include "ColorStorage.h"
 
 class Board
 {
@@ -47,27 +48,28 @@ private:
 	}
 	static const int MAX_TURNS = 60;
 	std::vector<Point> movablePos[MAX_TURNS + 1];
+	std::vector<std::vector<Disc>> updateLog;
+	
 	int turns;
-	int movableDir[MAX_TURNS][8][8];
-Color currentColor = BLACK;
-void initMovable() {
-	Disc disc(1,1,currentColor);
-	movablePos[turns].clear();
-	for (int x = 1; x <= SIZE; x++) {
-		disc.x = x;
-		for (int y = 1; y <= SIZE; y++) {
-			disc.y = y;
-			int dir = CheckMobirity(disc);
-			if (dir != 0) {
-				movablePos[turns].push_back(disc);
-			}
-			movableDir[turns][x][y] = dir;
-		}
-	}
-}
+	int movableDir[MAX_TURNS+1][SIZE][SIZE];
+	Color currentColor = BLACK;
+	void initMovable(); 
+	void flipDiscs(const Point& point);
+	ColorStorage<int> discs;
 public:
+
+	int DiscCount(Color color) {
+		return discs[color];
+	}
 	static int* directions;
 
+	Board() {
+		discs[BLACK] = 2;
+		discs[WHITE] = 2;
+		discs[EMPTY] = 60;
+		turns = 0;
+		initMovable();
+	}
 	int CheckMobirity(Disc disc);
 
 	int Turns()
@@ -87,8 +89,7 @@ public:
 	bool Move(Point point) {
 		if (point.x <= 0 || point.x > SIZE) return false;
 		if (point.y <= 0 || point.y > SIZE) return false;
-		//todo:‚Ð‚Á‚­‚è•Ô‚·
-
+		flipDiscs(point);
 		currentColor = -currentColor;
 		return true;
 	}
