@@ -21,13 +21,13 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a858da93-ca1b-4beb-a71a-711c91d7a614}</ProjectGuid>
-    <RootNamespace>Reversi</RootNamespace>
+    <ProjectGuid>{a29a8cf2-297e-4acf-a1a0-5788b9c35f3a}</ProjectGuid>
+    <RootNamespace>Reversiconsole</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -139,20 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="ColorStorage.cpp" />
-    <ClCompile Include="cube.cpp" />
-    <ClCompile Include="Disc.cpp" />
-    <ClCompile Include="grid.cpp" />
-    <ClCompile Include="Point.cpp" />
+    <ClCompile Include="Reversi.console.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
-    <ClInclude Include="ColorStorage.h" />
-    <ClInclude Include="cube.h" />
-    <ClInclude Include="Disc.h" />
-    <ClInclude Include="grid.h" />
-    <ClInclude Include="Point.h" />
+    <ProjectReference Include="..\Reversi\Reversi.vcxproj">
+      <Project>{a858da93-ca1b-4beb-a71a-711c91d7a614}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

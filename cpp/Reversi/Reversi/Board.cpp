@@ -9,7 +9,7 @@ public:
 
 Initializer instance;
 
-int* Board::directions;
+std::array<int,8> Board::directions;
 
 int Board::CheckMobirity(Disc disc)
 {
@@ -19,9 +19,7 @@ int Board::CheckMobirity(Disc disc)
 	Color revcolor = -disc.color;
 	int allMobirity = 0;
 	int dirMobirity = 1;
-	for (int i = 0; i < 8; i++) {
-		int dir = directions[i];
-
+	for (int dir : directions) {
 		int p = disc_p + dir;
 		if (RawBoard[p] == revcolor)
 		{
@@ -33,6 +31,7 @@ int Board::CheckMobirity(Disc disc)
 	}
 	return allMobirity;
 }
+
 void Board::initMovable() {
 	Disc disc(1, 1, currentColor);
 	movablePos[turns].clear();
@@ -44,7 +43,7 @@ void Board::initMovable() {
 			if (dir != 0) {
 				movablePos[turns].push_back(disc);
 			}
-			movableDir[turns][x - 1][y - 1] = dir;
+			movableDir[turns][index(x,y)] = dir;
 		}
 	}
 }
@@ -52,8 +51,8 @@ void Board::initMovable() {
 void Board::flipDiscs(const Point& point)
 {
 	Disc ope_disc(point.x, point.y, currentColor);
-	int dir = movableDir[turns][point.x-1][point.y-1];
 	int putdisc_p = index(point.x, point.y);
+	int dir = movableDir[turns][putdisc_p]; 
 	std::vector<Disc> update;
 	RawBoard[putdisc_p] = currentColor;
 	update.push_back(ope_disc);
