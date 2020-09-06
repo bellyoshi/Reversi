@@ -1,5 +1,5 @@
 #pragma once
-class grid
+class Grid
 {
 	int sizeX;
 	int sizeY;
