@@ -1,15 +1,25 @@
 #include "Board.h"
 
-class Initializer {
-public:
-	Initializer() {
-		Board::Initialize();
-	}
-};
 
-Initializer instance;
+std::vector<int> Board::directions = Board::MakeDirection();
 
-std::vector<int>* Board::directions;
+std::vector<int> Board::MakeDirection()
+{
+	std::vector<int> d;
+	int upper = Board::index(0, -1);
+	int left = Board::index(-1, 0);
+	int right = Board::index(1, 0);
+	int lower = Board::index(0, 1);
+	d.push_back(upper);
+	d.push_back(upper + left);
+	d.push_back(left);
+	d.push_back(lower + left);
+	d.push_back(lower);
+	d.push_back(lower + right);
+	d.push_back(right);
+	d.push_back(upper + right);
+	return d;
+}
 
 int Board::CheckMobirity(Disc disc)
 {
@@ -19,7 +29,7 @@ int Board::CheckMobirity(Disc disc)
 	Color revcolor = -disc.color;
 	int allMobirity = 0;
 	int dirMobirity = 1;
-	for (int dir : *directions) {
+	for (int dir : directions) {
 		int p = disc_p + dir;
 		if (RawBoard[p] == revcolor)
 		{
@@ -58,7 +68,7 @@ void Board::flipDiscs(const Point& point)
 	update.push_back(ope_disc);
 	for (int mobirity = 1,i = 0; i < 8; mobirity <<= 1, ++i) {
 		if (dir & mobirity) {
-			int p = putdisc_p + ((*directions)[i]);
+			int p = putdisc_p + directions[i];
 			while (RawBoard[p] == -currentColor) {
 				RawBoard[p] = currentColor;
 				ope_disc.x = p % RAW_SIZE;

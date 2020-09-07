@@ -5,6 +5,8 @@
 #include "ColorStorage.h"
 #include "Cube.h"
 
+
+
 class Board
 {
 public:
@@ -25,9 +27,10 @@ private:
 		G,G,G,G,G,G,G,G,G,G
 	};
 
-	inline static int index(int x, int y) {
+	inline static const int index(int x, int y) {
 		return y * RAW_SIZE + x;
 	}
+	static std::vector<int> MakeDirection();
 
 	static const int MAX_TURNS = 60;
 	std::vector<Point> movablePos[MAX_TURNS + 1];
@@ -46,28 +49,12 @@ private:
 			discs[RawBoard[i]]++;
 		}
 	}
-	static std::vector<int>* directions;
-	static void directionInit()
-	{
-		std::vector<int> d;
-		int upper = index(0, -1);
-		int left = index(-1, 0);
-		int right = index(1, 0);
-		int lower = index(0, 1);
-		directions = new std::vector<int>;
-		directions->push_back(upper);
-		directions->push_back(upper + left);
-		directions->push_back(left);
-		directions->push_back(lower + left);
-		directions->push_back(lower);
-		directions->push_back(lower + right);
-		directions->push_back(right);
-		directions->push_back(upper + right);
-	}
+	static std::vector<int> directions;
+
 public:
 
 	int static Directions(int i) {
-		return (*directions)[i];
+		return directions[i];
 	}
 
 	int DiscCount(Color color) {
@@ -89,9 +76,7 @@ public:
 	Color CurrentColor() {
 		return currentColor;
 	}
-	static void Initialize() {
-		directionInit();
-	}
+
 
 	Color Cell(int x, int y) {
 		return RawBoard[index(x, y)];
