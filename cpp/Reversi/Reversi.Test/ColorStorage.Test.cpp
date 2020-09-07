@@ -29,5 +29,12 @@ namespace ReversiTest
 			Assert::AreEqual(4, s[BLACK]);
 
 		}
+		TEST_METHOD(Clear)
+		{
+			ColorStorage<int> s;
+			s[EMPTY] = 60;
+			s.Clear();
+			Assert::AreEqual(0, s[EMPTY]);
+		}
 	};
 }

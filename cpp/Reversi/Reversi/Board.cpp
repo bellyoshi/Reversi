@@ -9,7 +9,7 @@ public:
 
 Initializer instance;
 
-std::array<int,8> Board::directions;
+std::vector<int>* Board::directions;
 
 int Board::CheckMobirity(Disc disc)
 {
@@ -19,7 +19,7 @@ int Board::CheckMobirity(Disc disc)
 	Color revcolor = -disc.color;
 	int allMobirity = 0;
 	int dirMobirity = 1;
-	for (int dir : directions) {
+	for (int dir : *directions) {
 		int p = disc_p + dir;
 		if (RawBoard[p] == revcolor)
 		{
@@ -43,7 +43,7 @@ void Board::initMovable() {
 			if (dir != 0) {
 				movablePos[turns].push_back(disc);
 			}
-			movableDir[turns][index(x,y)] = dir;
+			movableDir.Cells(x,y,turns) = dir;
 		}
 	}
 }
@@ -52,13 +52,13 @@ void Board::flipDiscs(const Point& point)
 {
 	Disc ope_disc(point.x, point.y, currentColor);
 	int putdisc_p = index(point.x, point.y);
-	int dir = movableDir[turns][putdisc_p]; 
+	int dir = movableDir.Cells(point.x,point.y,turns); 
 	std::vector<Disc> update;
 	RawBoard[putdisc_p] = currentColor;
 	update.push_back(ope_disc);
 	for (int mobirity = 1,i = 0; i < 8; mobirity <<= 1, ++i) {
 		if (dir & mobirity) {
-			int p = putdisc_p + directions[i];
+			int p = putdisc_p + ((*directions)[i]);
 			while (RawBoard[p] == -currentColor) {
 				RawBoard[p] = currentColor;
 				ope_disc.x = p % RAW_SIZE;

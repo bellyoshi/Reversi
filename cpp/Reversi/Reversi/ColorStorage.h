@@ -1,14 +1,15 @@
 #pragma once
 #include "Disc.h"
+#include <array>
 
 template<typename T> class ColorStorage
 {
 private:
-	T data[3] = { 0 };
+	std::array<T,3> data = { 0 };
 public:
 	void Clear() {
-		for (int i = 0; sizeof(data) / sizeof(data[0]); i++) {
-			data[i] = 0;
+		for (T &var : data) {
+			var = 0;
 		}
 	}
 	T& operator[](Color color) {

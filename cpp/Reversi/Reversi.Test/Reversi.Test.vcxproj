@@ -159,6 +159,8 @@
   <ItemGroup>
     <ClCompile Include="Board.Test.cpp" />
     <ClCompile Include="ColorStorage.Test.cpp" />
+    <ClCompile Include="Cube.Test.cpp" />
+    <ClCompile Include="Grid.Test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

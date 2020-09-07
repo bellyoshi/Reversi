@@ -3,6 +3,7 @@
 #include <vector>
 #include <array>
 #include "ColorStorage.h"
+#include "Cube.h"
 
 class Board
 {
@@ -28,15 +29,12 @@ private:
 		return y * RAW_SIZE + x;
 	}
 
-
-
-
 	static const int MAX_TURNS = 60;
 	std::vector<Point> movablePos[MAX_TURNS + 1];
 	std::vector<std::vector<Disc>> updateLog;
 	
 	int turns;
-	std::vector<std::vector<int>> movableDir;
+	Cube<int, RAW_SIZE,RAW_SIZE, MAX_TURNS> movableDir;
 	Color currentColor = BLACK;
 	void initMovable(); 
 	void flipDiscs(const Point& point);
@@ -48,28 +46,28 @@ private:
 			discs[RawBoard[i]]++;
 		}
 	}
-	static std::array<int,8> directions;
+	static std::vector<int>* directions;
 	static void directionInit()
 	{
+		std::vector<int> d;
 		int upper = index(0, -1);
 		int left = index(-1, 0);
 		int right = index(1, 0);
 		int lower = index(0, 1);
-
-		directions[0] = upper;
-		directions[1]=(upper + left);
-		directions[2]=(left);
-		directions[3]=(lower + left);
-		directions[4]=(lower);
-		directions[5]=(lower + right);
-		directions[6]=(right);
-		directions[7]=(upper + right);
-					 
+		directions = new std::vector<int>;
+		directions->push_back(upper);
+		directions->push_back(upper + left);
+		directions->push_back(left);
+		directions->push_back(lower + left);
+		directions->push_back(lower);
+		directions->push_back(lower + right);
+		directions->push_back(right);
+		directions->push_back(upper + right);
 	}
 public:
 
 	int static Directions(int i) {
-		return directions[i];
+		return (*directions)[i];
 	}
 
 	int DiscCount(Color color) {
