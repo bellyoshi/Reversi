@@ -1,7 +1,8 @@
 #include "Board.h"
 
 
-std::vector<int> Board::directions = Board::MakeDirection();
+
+std::vector<int> Board::directions = MakeDirection();
 
 std::vector<int> Board::MakeDirection()
 {
@@ -66,18 +67,18 @@ void Board::flipDiscs(const Point& point)
 	std::vector<Disc> update;
 	RawBoard[putdisc_p] = currentColor;
 	update.push_back(ope_disc);
-	for (int mobirity = 1,i = 0; i < 8; mobirity <<= 1, ++i) {
+	int mobirity = 1;
+	for (int direction : directions) {
 		if (dir & mobirity) {
-			int p = putdisc_p + directions[i];
+			int p = putdisc_p + direction;
 			while (RawBoard[p] == -currentColor) {
 				RawBoard[p] = currentColor;
 				ope_disc.x = p % RAW_SIZE;
 				ope_disc.y = p / RAW_SIZE;
 				update.push_back(ope_disc);
-
 			}
 		}
-		
+		mobirity <<= 1;
 	}
 	int discdiff = update.size();
 	discs[currentColor] += discdiff;

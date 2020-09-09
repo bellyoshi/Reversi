@@ -4,6 +4,7 @@
 #include <array>
 #include "ColorStorage.h"
 #include "Cube.h"
+#include "Grid.h"
 
 
 
@@ -14,7 +15,7 @@ public:
 private:
 
 	static const int RAW_SIZE = 1 + SIZE + 1;
-	Color RawBoard[RAW_SIZE*RAW_SIZE] = {
+	Grid<Color,RAW_SIZE,RAW_SIZE> RawBoard {
 		G,G,G,G,G,G,G,G,G,G,
 		G,E,E,E,E,E,E,E,E,G,
 		G,E,E,E,E,E,E,E,E,G,
