@@ -28,10 +28,7 @@ private:
 		G,G,G,G,G,G,G,G,G,G
 	};
 
-	inline static const int index(int x, int y) {
-		return y * RAW_SIZE + x;
-	}
-	static std::vector<int> MakeDirection();
+	void MakeDirection();
 
 	static const int MAX_TURNS = 60;
 	std::vector<Point> movablePos[MAX_TURNS + 1];
@@ -50,11 +47,11 @@ private:
 			discs[RawBoard[i]]++;
 		}
 	}
-	static std::vector<int> directions;
+	std::vector<int> directions;
 
 public:
 
-	int static Directions(int i) {
+	int Directions(int i) {
 		return directions[i];
 	}
 
@@ -64,6 +61,7 @@ public:
 
 
 	Board() {
+		MakeDirection();
 		doCountDiscs();
 		turns = 0;
 		initMovable();
@@ -80,7 +78,7 @@ public:
 
 
 	Color Cell(int x, int y) {
-		return RawBoard[index(x, y)];
+		return RawBoard.Cells(x,y);
 	}
 	bool Move(Point point) {
 		if (point.x <= 0 || point.x > SIZE) return false;

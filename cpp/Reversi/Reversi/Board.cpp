@@ -2,29 +2,25 @@
 
 
 
-std::vector<int> Board::directions = MakeDirection();
-
-std::vector<int> Board::MakeDirection()
+void Board::MakeDirection()
 {
-	std::vector<int> d;
-	int upper = Board::index(0, -1);
-	int left = Board::index(-1, 0);
-	int right = Board::index(1, 0);
-	int lower = Board::index(0, 1);
-	d.push_back(upper);
-	d.push_back(upper + left);
-	d.push_back(left);
-	d.push_back(lower + left);
-	d.push_back(lower);
-	d.push_back(lower + right);
-	d.push_back(right);
-	d.push_back(upper + right);
-	return d;
+	int upper = RawBoard.index(0, -1);
+	int left = RawBoard.index(-1, 0);
+	int right = RawBoard.index(1, 0);
+	int lower = RawBoard.index(0, 1);
+	directions.push_back(upper);
+	directions.push_back(upper + left);
+	directions.push_back(left);
+	directions.push_back(lower + left);
+	directions.push_back(lower);
+	directions.push_back(lower + right);
+	directions.push_back(right);
+	directions.push_back(upper + right);
 }
 
 int Board::CheckMobirity(Disc disc)
 {
-	int disc_p = index(disc.x, disc.y);
+	int disc_p = RawBoard.index(disc.x, disc.y);
 	if (RawBoard[disc_p] != EMPTY) return 0;
 
 	Color revcolor = -disc.color;
@@ -62,7 +58,7 @@ void Board::initMovable() {
 void Board::flipDiscs(const Point& point)
 {
 	Disc ope_disc(point.x, point.y, currentColor);
-	int putdisc_p = index(point.x, point.y);
+	int putdisc_p = RawBoard.index(point.x, point.y);
 	int dir = movableDir.Cells(point.x,point.y,turns); 
 	std::vector<Disc> update;
 	RawBoard[putdisc_p] = currentColor;

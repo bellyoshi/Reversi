@@ -37,14 +37,14 @@ namespace ReversiTest
 		}
 		TEST_METHOD(Directions) {
 			Board b;
-			Assert::AreEqual(-10, Board::Directions(0));
-			Assert::AreEqual(-11, Board::Directions(1));
-			Assert::AreEqual(-1, Board::Directions(2));
-			Assert::AreEqual(9, Board::Directions(3));
-			Assert::AreEqual(10, Board::Directions(4));
-			Assert::AreEqual(11, Board::Directions(5));
-			Assert::AreEqual(1, Board::Directions(6));
-			Assert::AreEqual(-9, Board::Directions(7));
+			Assert::AreEqual(-10, b.Directions(0));
+			Assert::AreEqual(-11, b.Directions(1));
+			Assert::AreEqual(-1, b.Directions(2));
+			Assert::AreEqual(9, b.Directions(3));
+			Assert::AreEqual(10, b.Directions(4));
+			Assert::AreEqual(11,b.Directions(5));
+			Assert::AreEqual(1, b.Directions(6));
+			Assert::AreEqual(-9,b.Directions(7));
 
 		}
 		TEST_METHOD(Move) {
